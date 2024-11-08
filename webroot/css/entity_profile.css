@@ -1,0 +1,14 @@
+main.container #entity_profile {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+main.container #entity_profile aside {
+    width: 250px;
+}
+
+main.container #entity_profile div {
+    flex-grow: 1;
+}

@@ -1,0 +1,25 @@
+{
+    "name": "mehov/cakephp-panel-nav",
+    "description": "Views and helpers to simplify building navigation in custom panel UIs",
+    "type": "cakephp-plugin",
+    "keywords": ["cakephp", "helper", "panel", "ui", "navigation"],
+    "require": {
+        "cakephp/cakephp": "^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "PanelNav\\": "src"
+        }
+    },
+    "authors": [
+        {
+            "name": "Contributors",
+            "homepage": "https://github.com/mehov/cakephp-panel-nav/graphs/contributors"
+        }
+    ],
+    "homepage": "https://github.com/mehov/cakephp-panel-nav",
+    "support": {
+        "source": "https://github.com/mehov/cakephp-panel-nav",
+        "issues": "https://github.com/mehov/cakephp-panel-nav/issues"
+    }
+}
