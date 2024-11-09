@@ -1,15 +1,16 @@
 <?php
+$this->Html->css('PanelNav.panel_nav', ['block' => true]);
 $this->Html->css('PanelNav.entity_profile', ['block' => true]);
 $this->Html->script('PanelNav.entity_profile', ['block' => true]);
 $this->loadHelper('PanelNav.ControllerSurroundings');
 $this->loadHelper('PanelNav.EntityProfile', ['entity' => $entity]);
 ?>
-<?= $this->element('PanelNav.controllers_nav') ?>
-<div id="entity_profile">
+<div id="panel_nav">
     <aside>
-        <?= $this->element('PanelNav.actions_nav', ['entity' => $entity]) ?>
+        <?= $this->element('PanelNav.controllers_nav') ?>
     </aside>
-    <div>
+    <div id="entity_profile">
+        <?= $this->element('PanelNav.actions_nav', ['entity' => $entity]) ?>
         <?= $this->fetch('content') ?>
     </div>
 </div>

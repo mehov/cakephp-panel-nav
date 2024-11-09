@@ -1,0 +1,14 @@
+#panel_nav {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+}
+
+#panel_nav > aside {
+    width: 250px;
+}
+
+#panel_nav > div:last-child {
+    flex-grow: 1;
+}
