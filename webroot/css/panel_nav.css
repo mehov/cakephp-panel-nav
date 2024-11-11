@@ -1,17 +1,18 @@
 #panel_nav {
-    display: flex;
-    flex-direction: row;
-    justify-content: flex-start;
-    align-items: flex-start;
     --panel-nav-background: #fff;
     --panel-nav-aside-background: #13171f;
     --panel-nav-aside-primary-color: #01aaff;
     --panel-nav-aside-secondary-color: #969eaf;
 }
 
+@media (min-width: 768px) {
+    #panel_nav.grid {
+        grid-template-columns: 1fr 4fr;
+    }
+}
+
 /* Sidebar */
 #panel_nav > aside {
-    width: 250px;
     background-color: var(--panel-nav-aside-background);
 }
 #panel_nav > aside ul {
@@ -49,9 +50,6 @@
 }
 
 /* Main block */
-#panel_nav > div:last-child {
-    flex-grow: 1;
-}
 /* Main block: Top bar */
 #panel_nav > div:last-child nav:first-child {
     border-bottom: 1px solid var(--panel-nav-aside-background);
