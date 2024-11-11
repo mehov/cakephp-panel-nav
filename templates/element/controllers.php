@@ -3,11 +3,15 @@ $this->loadHelper('PanelNav.ControllerSurroundings');
 ?>
 <ul>
 <?php foreach($this->ControllerSurroundings->getOtherControllers() as $name): ?>
-    <li><?= $this->Html->link(
-            $name, [
-            'controller' => $name, 'action' => 'index'
-        ], [
-            'class' => $name === $this->getRequest()->getParam('controller') ? 'contrast' : 'secondary'
-        ]) ?></li>
+    <li>
+        <?php
+$url = ['controller' => $name, 'action' => 'index'];
+$options = [];
+if ($name === $this->getRequest()->getParam('controller')) {
+    $options['aria-current'] = 'page';
+}
+echo $this->Html->link($name, $url, $options);
+?>
+    </li>
 <?php endforeach; ?>
 </ul>
