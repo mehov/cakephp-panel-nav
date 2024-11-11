@@ -3,12 +3,71 @@
     flex-direction: row;
     justify-content: flex-start;
     align-items: flex-start;
+    --panel-nav-background: #fff;
+    --panel-nav-aside-background: #13171f;
+    --panel-nav-aside-primary-color: #01aaff;
+    --panel-nav-aside-secondary-color: #969eaf;
 }
 
+/* Sidebar */
 #panel_nav > aside {
     width: 250px;
+    background-color: var(--panel-nav-aside-background);
+}
+#panel_nav > aside ul {
+    margin: 1rem 0; /* add some air at the top */
+    padding: 0;
+}
+/* Sidebar: Menu items */
+#panel_nav > aside ul li {
+    list-style: none;
+    position: relative;
+}
+/* Sidebar: Menu items: Current page - whole item */
+#panel_nav > aside ul li:has(a[aria-current=page]) {
+    background-color: rgba(255, 255, 255, .05);
+}
+/* Sidebar: Menu items: Current page - indicator on the side */
+#panel_nav > aside ul li:has(a[aria-current=page]):after {
+    background-color: var(--panel-nav-background);
+    content: '';
+    height: 100%;
+    right: 0;
+    position: absolute;
+    top: 0;
+    width: .2rem;
+}
+/* Sidebar: Menu items: Links - all */
+#panel_nav > aside ul li a {
+    color: var(--panel-nav-aside-secondary-color);
+    text-decoration-color: var(--panel-nav-aside-secondary-color);
+}
+/* Sidebar: Menu items: Links - current page */
+#panel_nav > aside ul li a[aria-current=page] {
+    color: var(--panel-nav-aside-primary-color);
+    text-decoration-color: var(--panel-nav-aside-primary-color);
 }
 
+/* Main block */
 #panel_nav > div:last-child {
     flex-grow: 1;
+}
+/* Main block: Top bar */
+#panel_nav > div:last-child nav:first-child {
+    border-bottom: 1px solid var(--panel-nav-aside-background);
+    margin-bottom: 1rem;
+}
+/* Main block: Top bar: Menu items */
+#panel_nav > div:last-child nav:first-child li {
+    position: relative; /* for the current page indicator below */
+}
+/* Main block: Top bar: Current page */
+#panel_nav > div:last-child nav:first-child li:has(a[aria-current=page]):after {
+    background-color: var(--panel-nav-aside-background);
+    bottom: -1px;
+    content: '';
+    height: .2rem;
+    right: 0;
+    position: absolute;
+    width: 100%;
 }
