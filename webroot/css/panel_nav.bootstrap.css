@@ -1,0 +1,20 @@
+#panel_nav.row {
+    margin-left: 0;
+}
+@media (max-width: 768px) {
+    #panel_nav.row {
+        margin-right: 0;
+    }
+}
+#panel_nav > aside {
+    padding-left: 0;
+    padding-right: 0;
+}
+#panel_nav > aside ul li.list-group-item {
+    background-color: transparent;
+    border: none;
+    border-radius: 0;
+}
+#panel_nav > div:last-child nav:first-child li:has(a[aria-current=page]):after {
+    bottom: calc(var(--bs-navbar-padding-y) * -1);
+}

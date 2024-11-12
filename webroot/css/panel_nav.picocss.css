@@ -1,0 +1,24 @@
+@media (min-width: 768px) {
+    #panel_nav.grid {
+        grid-template-columns: 1fr 4fr;
+    }
+}
+
+/* Sidebar */
+#panel_nav > aside {
+    background-color: var(--pico-contrast-background);
+}
+/* Sidebar: Menu items: Links - all */
+#panel_nav > aside ul li a {
+    color: var(--pico-secondary);
+    text-decoration-color: var(--pico-secondary);
+}
+/* Sidebar: Menu items: Links - current page */
+#panel_nav > aside ul li a[aria-current=page] {
+    color: var(--pico-primary);
+    text-decoration-color: var(--pico-primary);
+}
+/* Sidebar: Menu items: Current page - indicator on the side */
+#panel_nav > aside ul li:has(a[aria-current=page]):after {
+    background-color: var(--pico-background-color);
+}
