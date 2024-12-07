@@ -1,11 +1,11 @@
 <?php
 
-namespace PanelNav\View\Helper;
+namespace Bakeoff\PanelNav\View\Helper;
 
 /**
  * Class ControllerSurroundingsHelper
  *
- * @package PanelNav\View\Helper
+ * @package Bakeoff\PanelNav\View\Helper
  */
 class ControllerSurroundingsHelper extends \Cake\View\Helper
 {

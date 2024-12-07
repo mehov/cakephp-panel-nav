@@ -1,6 +1,6 @@
 <?php
 
-namespace PanelNav;
+namespace Bakeoff\PanelNav;
 
 class Plugin extends \Cake\Core\BasePlugin
 {
@@ -8,7 +8,7 @@ class Plugin extends \Cake\Core\BasePlugin
     public function __construct()
     {
         $cssFramework = self::detectCssFramework();
-        \Cake\Core\Configure::write('PanelNav.cssFramework', $cssFramework);
+        \Cake\Core\Configure::write('Bakeoff/PanelNav.cssFramework', $cssFramework);
     }
 
     public static function detectCssFramework()

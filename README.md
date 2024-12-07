@@ -12,7 +12,7 @@ This plugin lets you automate the process by automatically picking up all presen
 
 `ArticlesController` manages `Article` entities and has [actions](https://book.cakephp.org/5/en/controllers.html#controller-actions) such as `edit($id)`, `reviewComments($id)` etc.
 
-You can extend your view templates for those actions with `PanelNav./entity_profile`. This will render navigation to other actions available to this entity, as well as other controllers in the current prefix.
+You can extend your view templates for those actions with `Bakeoff/PanelNav./entity_profile`. This will render navigation to other actions available to this entity, as well as other controllers in the current prefix.
 
 For example, `templates/Articles/edit.php`:
 
@@ -33,7 +33,7 @@ echo $this->Form->end().PHP_EOL;
 
 ```php
 <?php
-$this->loadHelper('PanelNav.ControllerSurroundings');
+$this->loadHelper('Bakeoff/PanelNav.ControllerSurroundings');
 // Loop though other controllers in the same folder a.k.a. same prefix
 foreach ($this->ControllerSurroundings->getOtherControllers() as $name):
     // We get the controller name, without the 'Controller' suffix

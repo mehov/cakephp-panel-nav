@@ -1,8 +1,8 @@
 <?php
-$cssFramework = \Cake\Core\Configure::read('PanelNav.cssFramework');
-$this->Html->css('PanelNav.panel_nav', ['block' => true]);
+$cssFramework = \Cake\Core\Configure::read('Bakeoff/PanelNav.cssFramework');
+$this->Html->css('Bakeoff/PanelNav.panel_nav', ['block' => true]);
 if ($cssFramework) {
-    $this->Html->css('PanelNav.panel_nav.'.$cssFramework, ['block' => true]);
+    $this->Html->css('Bakeoff/PanelNav.panel_nav.'.$cssFramework, ['block' => true]);
 }
 
 switch ($cssFramework) {
@@ -25,7 +25,7 @@ switch ($cssFramework) {
 ?>
 <div id="panel_nav" class="<?= $wrapperClass ?>">
     <aside class="<?= $asideClass ?>">
-        <?= $this->element('PanelNav.controllers_nav') ?>
+        <?= $this->element('Bakeoff/PanelNav.controllers_nav') ?>
     </aside>
     <div id="controller_index" class="<?= $panelClass ?>">
         <?= $this->fetch('content') ?>

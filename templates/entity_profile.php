@@ -1,11 +1,11 @@
 <?php
-$cssFramework = \Cake\Core\Configure::read('PanelNav.cssFramework');
-$this->Html->css('PanelNav.panel_nav', ['block' => true]);
+$cssFramework = \Cake\Core\Configure::read('Bakeoff/PanelNav.cssFramework');
+$this->Html->css('Bakeoff/PanelNav.panel_nav', ['block' => true]);
 if ($cssFramework) {
-    $this->Html->css('PanelNav.panel_nav.'.$cssFramework, ['block' => true]);
+    $this->Html->css('Bakeoff/PanelNav.panel_nav.'.$cssFramework, ['block' => true]);
 }
-$this->loadHelper('PanelNav.ControllerSurroundings');
-$this->loadHelper('PanelNav.EntityProfile', ['entity' => $entity]);
+$this->loadHelper('Bakeoff/PanelNav.ControllerSurroundings');
+$this->loadHelper('Bakeoff/PanelNav.EntityProfile', ['entity' => $entity]);
 
 switch ($cssFramework) {
     case 'bootstrap':
@@ -27,10 +27,10 @@ switch ($cssFramework) {
 ?>
 <div id="panel_nav" class="<?= $wrapperClass ?>">
     <aside class="<?= $asideClass ?>">
-        <?= $this->element('PanelNav.controllers_nav') ?>
+        <?= $this->element('Bakeoff/PanelNav.controllers_nav') ?>
     </aside>
     <div id="entity_profile" class="<?= $panelClass ?>">
-        <?= $this->element('PanelNav.actions_nav', ['entity' => $entity]) ?>
+        <?= $this->element('Bakeoff/PanelNav.actions_nav', ['entity' => $entity]) ?>
         <?= $this->fetch('content') ?>
     </div>
 </div>

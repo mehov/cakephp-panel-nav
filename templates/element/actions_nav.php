@@ -1,7 +1,7 @@
 <?php
-$this->loadHelper('PanelNav.EntityProfile', ['entity' => $entity]);
+$this->loadHelper('Bakeoff/PanelNav.EntityProfile', ['entity' => $entity]);
 
-$cssFramework = \Cake\Core\Configure::read('PanelNav.cssFramework');
+$cssFramework = \Cake\Core\Configure::read('Bakeoff/PanelNav.cssFramework');
 switch ($cssFramework) {
     case 'bootstrap':
         $navClass = 'navbar navbar-expand-sm navbar-light justify-content-between';
@@ -26,5 +26,5 @@ switch ($cssFramework) {
             <strong><?= $this->EntityProfile->getTitle() ?></strong>
         </li>
     </ul>
-<?= $this->element('PanelNav.actions', ['entity' => $entity]) ?>
+<?= $this->element('Bakeoff/PanelNav.actions', ['entity' => $entity]) ?>
 </nav>

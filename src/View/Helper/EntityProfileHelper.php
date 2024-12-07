@@ -1,6 +1,6 @@
 <?php
 
-namespace PanelNav\View\Helper;
+namespace Bakeoff\PanelNav\View\Helper;
 
 /**
  * Entity profile is like a social network profile but for an entity. This class
@@ -8,7 +8,7 @@ namespace PanelNav\View\Helper;
  * them as clickable links in the sidebar. Entity profile also consists of
  * templates and static assets.
  *
- * @package PanelNav\View\Helper
+ * @package Bakeoff\PanelNav\View\Helper
  */
 class EntityProfileHelper extends \Cake\View\Helper
 {

@@ -1,7 +1,7 @@
 <?php
-$this->loadHelper('PanelNav.ControllerSurroundings');
+$this->loadHelper('Bakeoff/PanelNav.ControllerSurroundings');
 
-$cssFramework = \Cake\Core\Configure::read('PanelNav.cssFramework');
+$cssFramework = \Cake\Core\Configure::read('Bakeoff/PanelNav.cssFramework');
 switch ($cssFramework) {
     case 'bootstrap':
         $ulClass = 'navbar-nav';

@@ -1,5 +1,5 @@
 <?php
-$cssFramework = \Cake\Core\Configure::read('PanelNav.cssFramework');
+$cssFramework = \Cake\Core\Configure::read('Bakeoff/PanelNav.cssFramework');
 switch ($cssFramework) {
     case 'bootstrap':
         $navClass = '';
@@ -13,5 +13,5 @@ switch ($cssFramework) {
 }
 ?>
 <nav class="<?= $navClass ?>">
-<?= $this->element('PanelNav.controllers') ?>
+<?= $this->element('Bakeoff/PanelNav.controllers') ?>
 </nav>

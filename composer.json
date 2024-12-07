@@ -1,5 +1,5 @@
 {
-    "name": "mehov/cakephp-panel-nav",
+    "name": "bakeoff/panel-nav",
     "description": "Views and helpers to simplify building navigation in custom panel UIs",
     "type": "cakephp-plugin",
     "keywords": ["cakephp", "helper", "panel", "ui", "navigation"],
@@ -8,7 +8,7 @@
     },
     "autoload": {
         "psr-4": {
-            "PanelNav\\": "src"
+            "Bakeoff\\PanelNav\\": "src"
         }
     },
     "authors": [
