@@ -18,7 +18,7 @@ For example, `templates/Articles/edit.php`:
 
 ```php
 <?php
-$this->extend('PanelNav./entity_profile');
+$this->extend('Bakeoff/PanelNav./entity_profile');
 echo $this->Form->create($entity).PHP_EOL;
 echo $this->Form->control('title').PHP_EOL;
 echo $this->Form->control('body').PHP_EOL;
