@@ -2,6 +2,8 @@
 
 namespace Bakeoff\PanelNav\View\Helper;
 
+use Cake\Utility\Inflector;
+
 /**
  * Class ControllerSurroundingsHelper
  *
@@ -45,9 +47,32 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
      */
     public function getActions()
     {
-        $name = $this->getCurrentControllerFullName();
         // Get request from this view
         $request = $this->getView()->getRequest();
+        /*
+         * CakePHP actions that deal with entries receive ID as first argument.
+         * For Users, that can be: $id, $users_id, $user_id, $usersId, $userId.
+         * Use controller name to list all acceptable variants.
+         */
+        $name = $request->getParam('controller');
+        // Reusable shorthand to controller name singularized
+        $name_singularized = Inflector::singularize($name);
+        // Expected first arguments: id, users_id, user_id, usersId, userId
+        $id_arguments = array(
+            // simply $id
+            'id',
+            // underscored pluralized: $users_id, $user_accounts_id
+            Inflector::underscore($name) . '_id',
+            // underscored singularized: $user_id, $user_account_id
+            Inflector::underscore($name_singularized) . '_id',
+            // camelcased pluralized: $usersId, $userAccountsId
+            lcfirst($name) . 'Id',
+            // camelcased singularized: $userId, $userAccountId
+            lcfirst($name_singularized) . 'Id',
+        );
+        unset($name, $name_singularized); // clean up
+        // Get full controller name including namespace
+        $name = $this->getCurrentControllerFullName();
         // Initiate a copy of the controller into an instance
         $instance = new $name($request);
         // Use PHP Reflection to analyse the controller class
@@ -56,15 +81,14 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
             // We're only looking for public methods on that controller
             $reflection->getMethods(\ReflectionMethod::IS_PUBLIC),
             // Filter the public methods we got
-            function($method) use ($reflection) {
+            function($method) use ($reflection, $id_arguments) {
                 // method must be declared on that controller and not inherited
                 if ($method->getDeclaringClass()->getName() !== $reflection->getName()) {
                     return false;
                 }
                 // method must accept entity ID as first argument
                 $params = $method->getParameters();
-                // TODO: won't work if argument is named like $article_id
-                return isset($params[0]) && $params[0]->getName() === 'id';
+                return isset($params[0]) && in_array($params[0]->getName(), $id_arguments);
             }
         );
         // Each item is object(ReflectionMethod){name, class}; keep names only
