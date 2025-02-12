@@ -97,7 +97,7 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
                 // shorthand to declared method parameters a.k.a. arguments
                 $params = $method->getParameters();
                 // if not looking for entity actions
-                if (!$entity) {
+                if (!$entity || $entity->isNew()) {
                     return !isset($params[0]);// allow if no arguments expected
                 }
                 // method must accept entity ID as first argument

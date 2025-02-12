@@ -28,7 +28,7 @@ switch ($cssFramework) {
 <?php if ($action === $this->getRequest()->getParam('action')): ?>
             aria-current="page"
 <?php endif; ?>
-<?php if ($entity): ?>
+<?php if ($entity && !$entity->isNew()): ?>
             href="<?= \Cake\Routing\Router::url(['action' => $action, $this->EntityProfile->getId()])?>"
 <?php else: ?>
             href="<?= \Cake\Routing\Router::url(['action' => $action])?>"
