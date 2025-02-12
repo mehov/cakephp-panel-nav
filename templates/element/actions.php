@@ -21,14 +21,18 @@ switch ($cssFramework) {
 }
 ?>
 <ul class="<?= $ulClass ?>">
-<?php foreach ($this->ControllerSurroundings->getActions() as $action): ?>
+<?php foreach ($this->ControllerSurroundings->getActions($entity) as $action): ?>
     <li class="<?= $liClass ?>">
         <a
             class="<?= $aClass ?>"
 <?php if ($action === $this->getRequest()->getParam('action')): ?>
             aria-current="page"
 <?php endif; ?>
+<?php if ($entity): ?>
             href="<?= \Cake\Routing\Router::url(['action' => $action, $this->EntityProfile->getId()])?>"
+<?php else: ?>
+            href="<?= \Cake\Routing\Router::url(['action' => $action])?>"
+<?php endif; ?>
         ><?= \Cake\Utility\Inflector::humanize($action) ?></a>
     </li>
 <?php endforeach; ?>

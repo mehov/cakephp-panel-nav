@@ -23,7 +23,7 @@ switch ($cssFramework) {
 <nav class="<?= $navClass ?>">
     <ul class="<?= $ulClass ?>">
         <li class="<?= $liClass ?>">
-            <strong><?= $this->EntityProfile->getTitle() ?></strong>
+            <strong><?= $entity ? $this->EntityProfile->getTitle() : $this->getName() ?></strong>
         </li>
     </ul>
 <?= $this->element('Bakeoff/PanelNav.actions', ['entity' => $entity]) ?>

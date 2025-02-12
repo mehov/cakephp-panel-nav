@@ -28,6 +28,7 @@ switch ($cssFramework) {
         <?= $this->element('Bakeoff/PanelNav.controllers_nav') ?>
     </aside>
     <div id="controller_index" class="<?= $panelClass ?>">
+        <?= $this->element('Bakeoff/PanelNav.actions_nav', ['entity' => null]) ?>
         <?= $this->fetch('content') ?>
     </div>
 </div>

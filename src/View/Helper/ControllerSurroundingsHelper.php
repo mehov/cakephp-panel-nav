@@ -37,15 +37,19 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
     }
 
     /**
-     * Analyse public methods in current controller and find
-     * what could be clickable links. This way Console can render navigation
-     * automatically without relying on manually hardcoded list of actions for
-     * each given entity.
+     * Analyse public methods (a.k.a. actions) in current controller and find
+     * what could be clickable links. This way we can render navigation
+     * automatically without relying on manually hardcoded list of actions.
      *
+     * These clickable links can be grouped as:
+     * - actions for specific entity and requiring ID (edit or delete);
+     * - general actions (index or add).
+     *
+     * @param \Cake\ORM\Entity|null $entity pass if getting entity actions
      * @return string[]
      * @throws \ReflectionException
      */
-    public function getActions()
+    public function getActions($entity = null)
     {
         // Get request from this view
         $request = $this->getView()->getRequest();
@@ -81,7 +85,7 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
             // We're only looking for public methods on that controller
             $reflection->getMethods(\ReflectionMethod::IS_PUBLIC),
             // Filter the public methods we got
-            function($method) use ($instance, $reflection, $id_arguments) {
+            function($method) use ($entity, $instance, $reflection, $id_arguments) {
                 // method must be declared on that controller and not inherited
                 if ($method->getDeclaringClass()->getName() !== $reflection->getName()) {
                     return false;
@@ -90,8 +94,13 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
                 if (!$instance->isAction($method->getName())) {
                     return false;
                 }
-                // method must accept entity ID as first argument
+                // shorthand to declared method parameters a.k.a. arguments
                 $params = $method->getParameters();
+                // if not looking for entity actions
+                if (!$entity) {
+                    return !isset($params[0]);// allow if no arguments expected
+                }
+                // method must accept entity ID as first argument
                 return isset($params[0]) && in_array($params[0]->getName(), $id_arguments);
             }
         );
