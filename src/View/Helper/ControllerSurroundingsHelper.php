@@ -81,9 +81,13 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
             // We're only looking for public methods on that controller
             $reflection->getMethods(\ReflectionMethod::IS_PUBLIC),
             // Filter the public methods we got
-            function($method) use ($reflection, $id_arguments) {
+            function($method) use ($instance, $reflection, $id_arguments) {
                 // method must be declared on that controller and not inherited
                 if ($method->getDeclaringClass()->getName() !== $reflection->getName()) {
+                    return false;
+                }
+                // reuse Controller::isAction() logic
+                if (!$instance->isAction($method->getName())) {
                     return false;
                 }
                 // method must accept entity ID as first argument
