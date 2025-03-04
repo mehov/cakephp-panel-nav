@@ -8,7 +8,7 @@ if ($cssFramework) {
 switch ($cssFramework) {
     case 'bootstrap':
         $wrapperClass = 'row';
-        $asideClass = 'col-md-2 text-bg-dark';
+        $asideClass = 'col-md-2';
         $panelClass = 'col mt-3';
         break;
     case 'picocss':

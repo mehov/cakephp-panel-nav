@@ -7,7 +7,7 @@ switch ($cssFramework) {
         $ulClass = 'list-group';
         $liClass = 'list-group-item';
         $liClassCurrent = 'list-group-item active';
-        $aClass = 'nav-link text-white';
+        $aClass = 'nav-link';
         $aClassCurrent = 'nav-link active';
         break;
     case 'picocss':

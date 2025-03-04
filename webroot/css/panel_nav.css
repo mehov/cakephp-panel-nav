@@ -12,6 +12,9 @@
     list-style: none;
     position: relative;
 }
+#panel_nav > aside ul li a {
+    color: white;
+}
 /* Sidebar: Menu items: Current page - whole item */
 #panel_nav > aside ul li:has(a[aria-current=page]) {
     background-color: rgba(255, 255, 255, .1);
