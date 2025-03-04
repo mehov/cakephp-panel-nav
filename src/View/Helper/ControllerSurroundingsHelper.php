@@ -13,27 +13,14 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
 {
 
     /**
-     * @return string full name with namespace of currently requested controller
+     * @var \Cake\Controller\ControllerFactory
      */
-    public function getCurrentControllerFullName()
+    private $controllerFactory;
+
+    public function initialize(array $config): void
     {
-        // Get request from this view
-        $request = $this->getView()->getRequest();
-        // Now get the full path to controller class
-        /*
-         * Copied from \Cake\Controller\ControllerFactory::getControllerClass()
-         * See https://github.com/cakephp/cakephp/blob/cb3a3f7f6508842cb90927bc1e91a3618aece7cc/src/Controller/ControllerFactory.php#L297
-        */
-        $pluginPath = '';
-        $namespace = 'Controller';
-        $controller = $request->getParam('controller', '');
-        if ($request->getParam('plugin')) {
-            $pluginPath = $request->getParam('plugin') . '.';
-        }
-        if ($request->getParam('prefix')) {
-            $namespace .= '/' . $request->getParam('prefix');
-        }
-        return \Cake\Core\App::className($pluginPath . $controller, $namespace, 'Controller');
+        $container = new \Cake\Core\Container();
+        $this->controllerFactory = new \Cake\Controller\ControllerFactory($container);
     }
 
     /**
@@ -75,10 +62,8 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
             lcfirst($name_singularized) . 'Id',
         );
         unset($name, $name_singularized); // clean up
-        // Get full controller name including namespace
-        $name = $this->getCurrentControllerFullName();
         // Initiate a copy of the controller into an instance
-        $instance = new $name($request);
+        $instance = $this->controllerFactory->create($request);
         // Use PHP Reflection to analyse the controller class
         $reflection = new \ReflectionClass($instance);
         $methods = array_filter(
@@ -116,8 +101,10 @@ class ControllerSurroundingsHelper extends \Cake\View\Helper
      */
     public function getOtherControllers()
     {
-        $name = $this->getCurrentControllerFullName();
+        $request = $this->getView()->getRequest();
+        $name = $this->controllerFactory->getControllerClass($request);
         $controllerReflector = new \ReflectionClass($name);
+        unset($request, $name);
         $path = dirname($controllerReflector->getFileName());
         $classes = [];
         foreach ($iterator = new \RecursiveIteratorIterator(
