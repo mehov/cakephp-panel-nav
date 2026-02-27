@@ -11,7 +11,7 @@ switch ($cssFramework) {
     case 'bootstrap':
         $wrapperClass = 'row';
         $asideClass = 'col-md-2 text-bg-dark';
-        $panelClass = 'col';
+        $panelClass = 'col-md-10';
         break;
     case 'picocss':
         $wrapperClass = 'grid';
